@@ -1,0 +1,59 @@
+#!/bin/bash
+#
+# Copyright 2014,2015,2016,2017,2018 Security Onion Solutions, LLC
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+. /usr/sbin/so-common
+
+echo "Continuing will remove the XFCE desktop environment and replace it with Gnome Flashback."
+echo
+echo "Press Enter to continue or Ctrl-c to cancel."
+read input
+
+echo "Setting /etc/lightdm/lightdm-gtk-greeter-securityonion.conf as default greeter..."
+update-alternatives --install /etc/alternatives/lightdm-gtk-greeter-config-derivative lightdm-gtk-greeter-securityonion.conf /etc/lightdm/lightdm-gtk-greeter-securityonion.conf 10
+echo
+
+echo "Setting /usr/bin/gnome-terminal.wrapper as default terminal emulator..."
+update-alternatives --set x-terminal-emulator /usr/bin/gnome-terminal.wrapper
+echo
+
+echo "Updating glib-2.0 schemas..."
+glib-compile-schemas /usr/share/glib-2.0/schemas
+echo
+
+echo "Removing xfce packages..."
+apt purge -y $(dpkg -l |awk '{print $2}' | grep xfce | grep -v xfce4-terminal | grep -v libxfce4)
+echo
+
+echo "Removing thunar packages..."
+apt purge -y $(dpkg -l |awk '{print $2}' | grep thunar)
+echo
+
+echo "Removing extra packages..."
+apt purge -y xfdesktop4-data libgarcon* update-notifier
+echo
+
+echo "Updating Applications menu with Security Onion sub-menu..."
+mv /etc/xdg/menus/gnome-flashback-applications.menu /etc/xdg/menus/gnome-flashback-applications.menu.bak
+cp /etc/xdg/menus/gnome-flashback-applications.menu.so /etc/xdg/menus/gnome-flashback-applications.menu
+echo
+
+echo "Done!"
+echo
+
+echo "Press Enter to reboot or Ctrl-c to cancel."
+read input
+reboot

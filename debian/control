@@ -1,0 +1,15 @@
+Source: securityonion-desktop-gnome
+Section: net
+Priority: optional
+Maintainer: Doug Burks <doug.burks@gmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: https://securityonion.net
+#Vcs-Git: git://git.debian.org/collab-maint/securityonion-desktop-gnome.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/securityonion-desktop-gnome.git;a=summary
+
+Package: securityonion-desktop-gnome
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, gnome-session-flashback, gnome-tweak-tool, gnome-terminal
+Description: Gnome Flashback desktop for Security Onion
+ Security Onion theme and icons for Gnome Flashback

@@ -1,0 +1,6 @@
+icons usr/share
+lightdm etc
+menus etc/xdg
+sbin usr
+schemas usr/share/glib-2.0
+themes usr/share

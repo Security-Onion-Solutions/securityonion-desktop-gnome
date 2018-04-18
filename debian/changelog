@@ -1,0 +1,35 @@
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion6) trusty; urgency=medium
+
+  * remove extra packages 
+
+ -- Doug Burks <doug.burks@gmail.com>  Fri, 13 Apr 2018 13:43:40 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion5) trusty; urgency=medium
+
+  * update fonts 
+
+ -- Doug Burks <doug.burks@gmail.com>  Fri, 13 Apr 2018 11:56:08 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion4) trusty; urgency=medium
+
+  * update Applications menu 
+
+ -- Doug Burks <doug.burks@gmail.com>  Fri, 13 Apr 2018 08:48:55 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion3) trusty; urgency=medium
+
+  * add schema 
+
+ -- Doug Burks <doug.burks@gmail.com>  Thu, 12 Apr 2018 17:57:24 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion2) trusty; urgency=medium
+
+  * add .config and .local to /etc/skel/ 
+
+ -- Doug Burks <doug.burks@gmail.com>  Wed, 11 Apr 2018 16:27:53 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion1) trusty; urgency=low
+
+  * Initial release
+
+ -- Doug Burks <doug.burks@gmail.com>  Wed, 11 Apr 2018 14:35:55 -0400

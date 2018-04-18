@@ -1,0 +1,6 @@
+update-so-desktop-gnome
+update-skel
+add-schema
+update-Applications-menu
+update-fonts-and-remove-old-skel-stuff
+remove-extra-packages

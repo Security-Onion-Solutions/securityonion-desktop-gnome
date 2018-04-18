@@ -1,0 +1,128 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ securityonion-desktop-gnome (20180411-1ubuntu1securityonion2) trusty; urgency=medium
+ .
+   * add .config and .local to /etc/skel/
+Author: Doug Burks <doug.burks@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- securityonion-desktop-gnome-20180411.orig/sbin/so-desktop-gnome
++++ securityonion-desktop-gnome-20180411/sbin/so-desktop-gnome
+@@ -22,15 +22,25 @@ echo
+ echo "Press Enter to continue or Ctrl-c to cancel."
+ read input
+ 
++echo "Setting Gnome defaults..."
+ update-alternatives --install /etc/alternatives/lightdm-gtk-greeter-config-derivative lightdm-gtk-greeter-securityonion.conf /etc/lightdm/lightdm-gtk-greeter-securityonion.conf 10
+-
+ update-alternatives --set x-terminal-emulator /usr/bin/gnome-terminal.wrapper
++echo
+ 
+ echo "Removing packages..."
+ apt purge -y $(dpkg -l |awk '{print $2}' | grep xfce | grep -v xfce4-terminal | grep -v libxfce4)
+ apt purge -y $(dpkg -l |awk '{print $2}' | grep thunar)
++echo
++
++echo "Copying files..."
++cp -av /etc/skel-gnome/.config /etc/skel/
++cp -av /etc/skel-gnome/.local /etc/skel/
++chown -R root:root /etc/skel/.config
++chown -R root:root /etc/skel/.local
++echo
+ 
+ echo "Done!"
++echo
+ 
+ echo "Press Enter to reboot or Ctrl-c to cancel."
+ read input
+--- /dev/null
++++ securityonion-desktop-gnome-20180411/skel-gnome/.config/autostart/light-locker.desktop
+@@ -0,0 +1,43 @@
++[Desktop Entry]
++Type=Application
++Name=Screen Locker
++Name[ca]=Bloquejador de pantalla
++Name[de]=Bildschirmsperre
++Name[en_GB]=Screen Locker
++Name[es]=Bloqueador de pantalla
++Name[fi]=Näytön lukitusohjelma
++Name[fr]=Verrouilleur d'écran
++Name[gu]=સ્ક્રીન લૉકર
++Name[hi]=परदा अबरोधक
++Name[hu]=Képernyőzár
++Name[it]=Blocca schermo
++Name[kk]=Экран блоктаушысы
++Name[nl]=Schermvergrendeling
++Name[or]=ପରଦା ଅବରୋଧକ
++Name[pl]=Blokada ekranu
++Name[pt]=Bloqueio de Ecrã
++Name[pt_BR]=Bloqueio de Tela
++Name[ru]=Блокировщик экрана
++Name[tr]=Ekran Kilitleyici
++Comment=Launch screen locker program
++Comment[ca]=Obre el programa de blocatge de la pantalla
++Comment[de]=Bildschirmsperre starten
++Comment[en_GB]=Launch screen locker program
++Comment[es]=Abrir el programa de bloqueo de pantalla
++Comment[fi]=Käynnistä näytön lukitusohjelma
++Comment[fr]=Lancer le vérouilleur d'écran
++Comment[gu]=સ્ક્રીન લૉકર પ્રક્રિયાને શરુ કરો
++Comment[hi]=परदा अबरोधक प्रोग्राम आरम्भ करें
++Comment[hu]=Képernyőzár program indítása
++Comment[it]=Lancia il programma blocca schermo
++Comment[kk]=Экранды блоктау бағдарламасын жөнелту
++Comment[nl]=Schermvergrendelingsprogramma starten
++Comment[or]=ପରଦା ଅବରୋଧକ ଆରମ୍ଭ କରନ୍ତୁ
++Comment[pl]=Uruchom program blokady ekranu
++Comment[pt]=Lançar o programa de bloqueio do ecrã
++Comment[pt_BR]=Iniciar o programa de bloqueio de tela
++Comment[ru]=Запустить программу блокировки экрана
++Comment[tr]=Ekran kilitleyici programı başlat
++Icon=preferences-desktop-screensaver
++Exec=
++NoDisplay=true
+--- /dev/null
++++ securityonion-desktop-gnome-20180411/skel-gnome/.config/autostart/screensaver-settings.desktop
+@@ -0,0 +1,4 @@
++[Desktop Entry]
++Name=Screensaver
++Comment=Set screensaver timeouts
++Exec=xset s 0 dpms 0 0 0
+--- /dev/null
++++ securityonion-desktop-gnome-20180411/skel-gnome/.config/gnome-control-center/backgrounds/last-edited.xml
+@@ -0,0 +1,9 @@
++<?xml version="1.0"?>
++<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
++<wallpapers>
++  <wallpaper>
++    <name>securityonion.jpg</name>
++    <filename>/usr/share/securityonion/securityonion.jpg</filename>
++    <shade_type>solid</shade_type>
++  </wallpaper>
++</wallpapers>
+--- /dev/null
++++ securityonion-desktop-gnome-20180411/skel-gnome/.local/share/desktop-directories/X-GNOME-Other.directory
+@@ -0,0 +1,6 @@
++[Desktop Entry]
++Name=Security Onion
++Comment=
++Icon=applications-other
++Type=Directory
++X-Ubuntu-Gettext-Domain=gnome-menus-3.0

@@ -1,0 +1,38 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ securityonion-desktop-gnome (20180411-1ubuntu1securityonion6) trusty; urgency=medium
+ .
+   * remove extra packages
+Author: Doug Burks <doug.burks@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- securityonion-desktop-gnome-20180411.orig/sbin/so-desktop-gnome
++++ securityonion-desktop-gnome-20180411/sbin/so-desktop-gnome
+@@ -42,6 +42,10 @@ echo "Removing thunar packages..."
+ apt purge -y $(dpkg -l |awk '{print $2}' | grep thunar)
+ echo
+ 
++echo "Removing extra packages..."
++apt purge -y xfdesktop4-data libgarcon* update-notifier
++echo
++
+ echo "Updating Applications menu with Security Onion sub-menu..."
+ mv /etc/xdg/menus/gnome-flashback-applications.menu /etc/xdg/menus/gnome-flashback-applications.menu.bak
+ cp /etc/xdg/menus/gnome-flashback-applications.menu.so /etc/xdg/menus/gnome-flashback-applications.menu
