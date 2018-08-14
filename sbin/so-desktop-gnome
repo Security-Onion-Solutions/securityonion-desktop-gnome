@@ -15,24 +15,92 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-. /usr/sbin/so-common
+[ -f /usr/sbin/so-common ] && . /usr/sbin/so-common
 
-echo "Continuing will remove the XFCE desktop environment and replace it with Gnome Flashback."
+echo
+echo "Continuing will set Gnome as the default desktop environment and remove other desktop environments."
 echo
 echo "Press Enter to continue or Ctrl-c to cancel."
 read input
 
-echo "Setting /etc/lightdm/lightdm-gtk-greeter-securityonion.conf as default greeter..."
-update-alternatives --install /etc/alternatives/lightdm-gtk-greeter-config-derivative lightdm-gtk-greeter-securityonion.conf /etc/lightdm/lightdm-gtk-greeter-securityonion.conf 10
-echo
+echo "Installing Security Onion packages..."
+apt install -y securityonion-logo
 
-echo "Setting /usr/bin/gnome-terminal.wrapper as default terminal emulator..."
-update-alternatives --set x-terminal-emulator /usr/bin/gnome-terminal.wrapper
-echo
-
-echo "Updating glib-2.0 schemas..."
-glib-compile-schemas /usr/share/glib-2.0/schemas
-echo
+echo "Installing Gnome packages..."
+apt install -y \
+	adwaita-icon-theme-full \
+	alsa-base \
+	alsa-utils \
+	anacron \
+	at-spi2-core \
+	baobab \
+	bc \
+	ca-certificates \
+	chromium-browser \
+	dconf-editor \
+	file-roller \
+	fonts-cantarell \
+	fonts-dejavu-core \
+	fonts-freefont-ttf \
+	fonts-liberation \
+	gcr \
+	gedit \
+	genisoimage \
+	gjs \
+	gnome-backgrounds \
+	gnome-calculator \
+	gnome-color-manager \
+	gnome-control-center \
+	gnome-disk-utility \
+	gnome-font-viewer \
+	gnome-keyring \
+	gnome-logs \
+	gnome-menus \
+	gnome-screensaver \
+	gnome-screenshot \
+	gnome-session \
+	gnome-settings-daemon \
+	gnome-shell \
+	gnome-shell-extensions \
+	gnome-system-monitor \
+	gnome-terminal \
+	gnome-themes-standard \
+	gnome-tweak-tool \
+	gnome-user-share \
+	gsettings-desktop-schemas \
+	gucharmap \
+	gvfs-bin \
+	inputattach \
+	itstool \
+	libatk-adaptor \
+	libnotify-bin \
+	libnss-myhostname \
+	libsasl2-modules \
+	memtest86+ \
+	mutter \
+	nautilus \
+	network-manager \
+	pulseaudio \
+	rfkill \
+	seahorse \
+	software-properties-gtk \
+	ssh-askpass-gnome \
+	ubuntu-drivers-common \
+	unzip \
+	vino \
+	wireless-tools \
+	wpasupplicant \
+	xdg-user-dirs \
+	xdg-user-dirs-gtk \
+	xdiagnose \
+	xkb-data \
+	xorg \
+	yelp \
+	yelp-tools \
+	yelp-xsl \
+	zenity \
+	zip \
+	zsync
 
 echo "Removing xfce packages..."
 apt purge -y $(dpkg -l |awk '{print $2}' | grep xfce | grep -v xfce4-terminal | grep -v libxfce4)
@@ -42,18 +110,115 @@ echo "Removing thunar packages..."
 apt purge -y $(dpkg -l |awk '{print $2}' | grep thunar)
 echo
 
-echo "Removing extra packages..."
-apt purge -y xfdesktop4-data libgarcon* update-notifier
+echo "Removing other packages..."
+apt purge -y \
+	"account-plugin*" \
+	"adium-theme-ubuntu" \
+	"aisleriot" \
+	"avahi*" \
+	"branding-ubuntu" \
+	"brasero*" \
+	"*checkbox*" \
+	"cheese" \
+	"chrome-gnome-shell" \
+	"compiz*" \
+	"cups*" \
+	"deja-dup*" \
+	"dleyna*" \
+	"empathy*" \
+	"eog" \
+	"evince*" \
+	"evolution-common" \
+	"evolution-data-server-online-accounts" \
+	"firefox*" \
+	"fonts-ubuntu-font-family-console" \
+	"gdm3" \
+	"ghostscript" \
+	"ghostscript-x" \
+	"gnome-calendar" \
+	"gnome-contacts" \
+	"gnome-documents" \
+	"gnome-getting-started-docs" \
+	"gnome-mahjongg" \
+	"gnome-maps" \
+	"gnome-mines" \
+	"gnome-music" \
+	"gnome-online*" \
+	"gnome-photos" \
+	"gnome-sudoku" \
+	"gnome-sushi" \
+	"gnome-weather" \
+	"imagemagick*" \
+	"libgarcon*" \
+	"liblxc1" \
+	"libreoffice*" \
+	"libtracker-control*" \
+	"libtracker-miner*" \
+	"light-themes" \
+	"lxc-common" \
+	"lxcfs" \
+	"lxd" \
+	"lxd-client" \
+	"nautilus-sendto" \
+	"nautilus-share" \
+	"openoffice.org-hyphenation" \
+	"pidgin*" \
+	"plymouth-theme-ubuntu-text" \
+	"*remmina*" \
+	"rhythmbox*" \
+	"sane-utils" \
+	"shotwell*" \
+	"simple-scan" \
+	"snap*" \
+	"speech-dispatcher*" \
+	"system-config-printer-*" \
+	"telepathy-gabble" \
+	"telepathy-idle" \
+	"telepathy-logger" \
+	"telepathy-salut" \
+	"thunderbird*" \
+	"totem*" \
+	"tracker*" \
+	"transmission*" \
+	"ubuntu-artwork" \
+	"ubuntu-gnome-default-settings" \
+	"ubuntu-gnome-wallpapers*" \
+	"ubuntu-mono" \
+	"ubuntu-release-upgrader*" \
+	"ubuntu-session" \
+	"ubuntu-settings" \
+	"ubuntu*sounds" \
+	"ubuntu-standard" \
+	"ubuntu-wallpapers*" \
+	"unity-*" \
+	"usb-creator*" \
+	"xfdesktop4-data" \
+	"zeitgeist*"
+apt -y autoremove
 echo
 
-echo "Updating Applications menu with Security Onion sub-menu..."
-mv /etc/xdg/menus/gnome-flashback-applications.menu /etc/xdg/menus/gnome-flashback-applications.menu.bak
-cp /etc/xdg/menus/gnome-flashback-applications.menu.so /etc/xdg/menus/gnome-flashback-applications.menu
+echo "Setting /usr/bin/gnome-terminal.wrapper as default terminal emulator..."
+update-alternatives --set x-terminal-emulator /usr/bin/gnome-terminal.wrapper
 echo
+
+FILE="/usr/bin/glib-compile-schemas"
+if [ -f $FILE ]; then
+	echo "Updating glib-2.0 schemas..."
+	$FILE /usr/share/glib-2.0/schemas
+	echo
+fi
+
+echo "Setting /etc/lightdm/lightdm-gtk-greeter-securityonion.conf as default greeter..."
+# Install lightdm after gdm3 has been removed to avoid prompting user
+apt install -y lightdm lightdm-gtk-greeter
+update-alternatives --install /etc/alternatives/lightdm-gtk-greeter-config-derivative lightdm-gtk-greeter-securityonion.conf /etc/lightdm/lightdm-gtk-greeter-securityonion.conf 10
+mv /etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf.orig
+ln -s /etc/alternatives/lightdm-gtk-greeter-config-derivative /etc/lightdm/lightdm-gtk-greeter.conf
+echo
+
+#echo "Updating Applications menu with Security Onion sub-menu..."
+#mv /etc/xdg/menus/gnome-flashback-applications.menu /etc/xdg/menus/gnome-flashback-applications.menu.bak
+#cp /etc/xdg/menus/gnome-flashback-applications.menu.so /etc/xdg/menus/gnome-flashback-applications.menu
+#echo
 
 echo "Done!"
-echo
-
-echo "Press Enter to reboot or Ctrl-c to cancel."
-read input
-reboot

@@ -1,0 +1,76 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ securityonion-desktop-gnome (20180411-1ubuntu1securityonion24) xenial; urgency=medium
+ .
+   * change to default Adwaita theme
+Author: Doug Burks <doug.burks@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- securityonion-desktop-gnome-20180411.orig/lightdm.conf.d/50-gnome-flashback.conf
++++ /dev/null
+@@ -1,2 +0,0 @@
+-[Seat:*]
+-user-session=gnome-flashback-metacity
+--- /dev/null
++++ securityonion-desktop-gnome-20180411/lightdm.conf.d/50-gnome.conf
+@@ -0,0 +1,2 @@
++[Seat:*]
++user-session=gnome-classic
+--- securityonion-desktop-gnome-20180411.orig/schemas/20_securityonion-settings.gschema.override
++++ securityonion-desktop-gnome-20180411/schemas/20_securityonion-settings.gschema.override
+@@ -8,11 +8,11 @@ picture-options='centered'
+ primary-color='#a4c3e0'
+ 
+ [org.gnome.desktop.interface]
+-gtk-theme="Clearlooks-Phenix"
+-icon-theme="SecurityOnion"
+-cursor-theme="DMZ-White"
++gtk-theme="Adwaita"
++icon-theme="Adwaita"
++cursor-theme="Adwaita"
+ font-name="Liberation 11"
+-monospace-font-name="Liberation Mono 13"
++monospace-font-name="Liberation Mono 11"
+ 
+ [org.gnome.desktop.peripherals.touchpad]
+ tap-to-click = true
+@@ -21,7 +21,7 @@ tap-to-click = true
+ theme-name = ''
+ 
+ [org.gnome.desktop.session]
+-session-name="ubuntu"
++session-name="gnome"
+ 
+ [org.gnome.desktop.wm.keybindings]
+ maximize = ['<Primary><Super>Up','<Super>Up','<Primary><Alt>KP_5']
+@@ -46,7 +46,7 @@ move-to-workspace-down = ['<Shift><Contr
+ [org.gnome.desktop.wm.preferences]
+ button-layout=':minimize,maximize,close'
+ mouse-button-modifier='<Alt>'
+-theme="Clearlooks-Phenix"
++theme="Adwaita"
+ titlebar-font='Liberation Bold 11'
+ action-middle-click-titlebar='lower'
+ titlebar-uses-system-font=false
+--- securityonion-desktop-gnome-20180411.orig/schemas/20_securityonion_metacity-common.gschema.override
++++ /dev/null
+@@ -1,2 +0,0 @@
+-[org.gnome.metacity]
+-theme='Clearlooks-Phenix'

@@ -1,0 +1,156 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ securityonion-desktop-gnome (20180411-1ubuntu1securityonion31) xenial; urgency=medium
+ .
+   * update so-desktop-gnome
+Author: Doug Burks <doug.burks@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- securityonion-desktop-gnome-20180411.orig/sbin/so-desktop-gnome
++++ securityonion-desktop-gnome-20180411/sbin/so-desktop-gnome
+@@ -17,21 +17,98 @@
+ 
+ [ -f /usr/sbin/so-common ] && . /usr/sbin/so-common
+ 
++echo
+ echo "Continuing will set Gnome as the default desktop environment and remove other desktop environments."
+ echo
+ echo "Press Enter to continue or Ctrl-c to cancel."
+ read input
+ 
+-echo "Setting /usr/bin/gnome-terminal.wrapper as default terminal emulator..."
+-update-alternatives --set x-terminal-emulator /usr/bin/gnome-terminal.wrapper
+-echo
+-
+-FILE="/usr/bin/glib-compile-schemas"
+-if [ -f $FILE ]; then
+-	echo "Updating glib-2.0 schemas..."
+-	$FILE /usr/share/glib-2.0/schemas
+-	echo
+-fi
++echo "Installing packages..."
++apt install -y securityonion-logo
++apt install -y \
++	adwaita-icon-theme-full \
++	alsa-base \
++	alsa-utils \
++	anacron \
++	at-spi2-core \
++	baobab \
++	bc \
++	ca-certificates \
++	dconf-editor \
++	file-roller \
++	fonts-cantarell \
++	fonts-dejavu-core \
++	fonts-freefont-ttf \
++	foomatic-db-compressed-ppds \
++	gcr \
++	gedit \
++	genisoimage \
++	ghostscript-x \
++	gjs \
++	gnome-backgrounds \
++	gnome-calculator \
++	gnome-color-manager \
++	gnome-control-center \
++	gnome-disk-utility \
++	gnome-font-viewer \
++	gnome-keyring \
++	gnome-logs \
++	gnome-menus \
++	gnome-online-accounts \
++	gnome-screenshot \
++	gnome-session \
++	gnome-settings-daemon \
++	gnome-shell \
++	gnome-shell-extensions \
++	gnome-sushi \
++	gnome-system-monitor \
++	gnome-terminal \
++	gnome-themes-standard \
++	gnome-tweak-tool \
++	gnome-user-share \
++	gnome-video-effects \
++	gsettings-desktop-schemas \
++	gstreamer1.0-alsa \
++	gstreamer1.0-pulseaudio \
++	gucharmap \
++	gvfs-bin \
++	inputattach \
++	itstool \
++	libatk-adaptor \
++	libnotify-bin \
++	libnss-myhostname \
++	libsasl2-modules \
++	memtest86+ \
++	mutter \
++	nautilus \
++	network-manager \
++	openprinting-ppds \
++	printer-driver-pnm2ppa \
++	pulseaudio \
++	rfkill \
++	seahorse \
++	software-properties-gtk \
++	ssh-askpass-gnome \
++	system-config-printer-gnome \
++	ubuntu-drivers-common \
++	ubuntu-gnome-default-settings \
++	unzip \
++	update-manager \
++	update-notifier \
++	vino \
++	wireless-tools \
++	wpasupplicant \
++	xdg-user-dirs \
++	xdg-user-dirs-gtk \
++	xdiagnose \
++	xkb-data \
++	xorg \
++	yelp \
++	yelp-tools \
++	yelp-xsl \
++	zenity \
++	zip \
++	zsync
+ 
+ echo "Removing xfce packages..."
+ apt purge -y $(dpkg -l |awk '{print $2}' | grep xfce | grep -v xfce4-terminal | grep -v libxfce4)
+@@ -114,7 +191,19 @@ apt purge -y \
+ 	"zeitgeist*"
+ echo
+ 
++echo "Setting /usr/bin/gnome-terminal.wrapper as default terminal emulator..."
++update-alternatives --set x-terminal-emulator /usr/bin/gnome-terminal.wrapper
++echo
++
++FILE="/usr/bin/glib-compile-schemas"
++if [ -f $FILE ]; then
++	echo "Updating glib-2.0 schemas..."
++	$FILE /usr/share/glib-2.0/schemas
++	echo
++fi
++
+ echo "Setting /etc/lightdm/lightdm-gtk-greeter-securityonion.conf as default greeter..."
++# Install lightdm after gdm3 has been removed to avoid prompting user
+ apt install -y lightdm lightdm-gtk-greeter
+ update-alternatives --install /etc/alternatives/lightdm-gtk-greeter-config-derivative lightdm-gtk-greeter-securityonion.conf /etc/lightdm/lightdm-gtk-greeter-securityonion.conf 10
+ mv /etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf.orig

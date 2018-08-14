@@ -1,6 +1,6 @@
-icons usr/share
 lightdm etc
+lightdm.conf.d usr/share/lightdm
 menus etc/xdg
 sbin usr
 schemas usr/share/glib-2.0
-themes usr/share
+securityonion usr/share

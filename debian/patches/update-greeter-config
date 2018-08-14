@@ -1,0 +1,116 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ securityonion-desktop-gnome (20180411-1ubuntu1securityonion13) xenial; urgency=medium
+ .
+   * update greeter config
+Author: Doug Burks <doug.burks@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- securityonion-desktop-gnome-20180411.orig/lightdm/lightdm-gtk-greeter-securityonion.conf
++++ securityonion-desktop-gnome-20180411/lightdm/lightdm-gtk-greeter-securityonion.conf
+@@ -1,27 +1,9 @@
+-#
+-# background = Background file to use, either an image path or a color (e.g. #772953)
+-# theme-name = GTK+ theme to use
+-# icon-theme-name = Icon theme to use
+-# font-name = Font to use
+-# xft-antialias = Whether to antialias Xft fonts (true or false)
+-# xft-dpi = Resolution for Xft in dots per inch (e.g. 96)
+-# xft-hintstyle = What degree of hinting to use (none, slight, medium, or hintfull)
+-# xft-rgba = Type of subpixel antialiasing (none, rgb, bgr, vrgb or vbgr)
+-# indicators = semi-colon ";" separated list of allowed indicator modules. Built-in indicators include "~a11y", "~language", "~session", "~power". Unity indicators can be represented by short name (e.g. "sound", "power"), service file name, or absolute path
+-# show-clock (true or false)
+-# clock-format = strftime-format string, e.g. %H:%M
+-# keyboard = command to launch on-screen keyboard
+-# position = main window position: x y
+-# default-user-image = Image used as default user icon, path or #icon-name
+-# screensaver-timeout = Timeout (in seconds) until the screen blanks when the greeter is called as lockscreen
+-# 
+ [greeter]
+-background=/usr/share/securityonion/securityonion.jpg
+-theme-name=SecurityOnion
+-icon-theme-name=SecurityOnion
+-font-name=Liberation 11
+-xft-antialias=true
+-xft-dpi=96
+-xft-hintstyle=slight
+-xft-rgba=rgb
+-indicators=~language;~session;~power
++background = /usr/share/securityonion/securityonion.jpg
++theme-name = Clearlooks-Phenix
++icon-theme-name = SecurityOnion
++font-name = Liberation
++hide-user-image = true
++user-background = false
++position = 50%,center 75%,center
++
+--- /dev/null
++++ securityonion-desktop-gnome-20180411/lightdm/lightdm-gtk-greeter-securityonion.conf.orig
+@@ -0,0 +1,27 @@
++#
++# background = Background file to use, either an image path or a color (e.g. #772953)
++# theme-name = GTK+ theme to use
++# icon-theme-name = Icon theme to use
++# font-name = Font to use
++# xft-antialias = Whether to antialias Xft fonts (true or false)
++# xft-dpi = Resolution for Xft in dots per inch (e.g. 96)
++# xft-hintstyle = What degree of hinting to use (none, slight, medium, or hintfull)
++# xft-rgba = Type of subpixel antialiasing (none, rgb, bgr, vrgb or vbgr)
++# indicators = semi-colon ";" separated list of allowed indicator modules. Built-in indicators include "~a11y", "~language", "~session", "~power". Unity indicators can be represented by short name (e.g. "sound", "power"), service file name, or absolute path
++# show-clock (true or false)
++# clock-format = strftime-format string, e.g. %H:%M
++# keyboard = command to launch on-screen keyboard
++# position = main window position: x y
++# default-user-image = Image used as default user icon, path or #icon-name
++# screensaver-timeout = Timeout (in seconds) until the screen blanks when the greeter is called as lockscreen
++# 
++[greeter]
++background=/usr/share/securityonion/securityonion.jpg
++theme-name=SecurityOnion
++icon-theme-name=SecurityOnion
++font-name=Liberation 11
++xft-antialias=true
++xft-dpi=96
++xft-hintstyle=slight
++xft-rgba=rgb
++indicators=~language;~session;~power
+--- securityonion-desktop-gnome-20180411.orig/sbin/so-desktop-gnome
++++ securityonion-desktop-gnome-20180411/sbin/so-desktop-gnome
+@@ -15,9 +15,9 @@
+ # You should have received a copy of the GNU General Public License
+ # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ 
+-. /usr/sbin/so-common
++[ -f /usr/sbin/so-common ] && . /usr/sbin/so-common
+ 
+-echo "Continuing will set Gnome Flashback as the default desktop environment and remove others."
++echo "Continuing will set Gnome Flashback as the default desktop environment and remove other desktop environments."
+ echo
+ echo "Press Enter to continue or Ctrl-c to cancel."
+ read input
+@@ -45,6 +45,8 @@ echo
+ echo "Setting /etc/lightdm/lightdm-gtk-greeter-securityonion.conf as default greeter..."
+ apt install -y lightdm-gtk-greeter
+ update-alternatives --install /etc/alternatives/lightdm-gtk-greeter-config-derivative lightdm-gtk-greeter-securityonion.conf /etc/lightdm/lightdm-gtk-greeter-securityonion.conf 10
++mv /etc/lightdm/light-gtk-greeter.conf /etc/lightdm/light-gtk-greeter.conf.orig
++ln -s /etc/alternatives/lightdm-gtk-greeter-config-derivative /etc/lightdm/light-gtk-greeter.conf
+ echo
+ 
+ echo "Updating Applications menu with Security Onion sub-menu..."

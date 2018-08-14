@@ -10,6 +10,6 @@ Homepage: https://securityonion.net
 
 Package: securityonion-desktop-gnome
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, gnome-session-flashback, gnome-tweak-tool, gnome-terminal
-Description: Gnome Flashback desktop for Security Onion
- Security Onion theme and icons for Gnome Flashback
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Gnome desktop for Security Onion
+ Gnome desktop for Security Onion

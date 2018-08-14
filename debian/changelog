@@ -1,3 +1,249 @@
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion47) xenial; urgency=medium
+
+  * securityonion-desktop-gnome: install gnome-screensaver #1295 
+
+ -- Doug Burks <doug.burks@gmail.com>  Tue, 14 Aug 2018 11:00:50 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion46) xenial; urgency=medium
+
+  * leave update-notifier in place 
+
+ -- Doug Burks <doug.burks@gmail.com>  Tue, 15 May 2018 14:39:36 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion45) xenial; urgency=medium
+
+  * remove reboot 
+
+ -- Doug Burks <doug.burks@gmail.com>  Tue, 15 May 2018 08:28:05 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion44) xenial; urgency=medium
+
+  * remove lxc and lxd 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sun, 13 May 2018 14:59:18 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion43) xenial; urgency=medium
+
+  * remove ubuntu-standard 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sun, 13 May 2018 14:38:11 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion42) xenial; urgency=medium
+
+  * disable animations 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sun, 13 May 2018 07:26:48 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion41) xenial; urgency=medium
+
+  * remove plymouth-theme-ubuntu-text 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sun, 13 May 2018 06:21:03 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion40) xenial; urgency=medium
+
+  * add chromium-browser 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sat, 12 May 2018 16:53:40 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion39) xenial; urgency=medium
+
+  * add fonts-liberation 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sat, 12 May 2018 16:49:31 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion38) xenial; urgency=medium
+
+  * remove more packages 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sat, 12 May 2018 16:30:45 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion37) xenial; urgency=medium
+
+  * fix font settings 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sat, 12 May 2018 16:14:02 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion36) xenial; urgency=medium
+
+  * apt -y autoremove 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sat, 12 May 2018 15:55:48 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion35) xenial; urgency=medium
+
+  * apt autoremove 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sat, 12 May 2018 08:32:40 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion34) xenial; urgency=medium
+
+  * update 
+
+ -- Doug Burks <doug.burks@gmail.com>  Fri, 11 May 2018 17:36:33 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion33) xenial; urgency=medium
+
+  * remove unnecessary software 
+
+ -- Doug Burks <doug.burks@gmail.com>  Fri, 11 May 2018 17:19:04 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion32) xenial; urgency=medium
+
+  * remove ubuntu-gnome-default-settings 
+
+ -- Doug Burks <doug.burks@gmail.com>  Fri, 11 May 2018 16:09:39 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion31) xenial; urgency=medium
+
+  * update so-desktop-gnome 
+
+ -- Doug Burks <doug.burks@gmail.com>  Fri, 11 May 2018 15:56:33 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion30) xenial; urgency=medium
+
+  * add so.svg 
+
+ -- Doug Burks <doug.burks@gmail.com>  Thu, 10 May 2018 13:38:12 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion29) xenial; urgency=medium
+
+  * remove SecurityOnion theme and icons 
+
+ -- Doug Burks <doug.burks@gmail.com>  Thu, 10 May 2018 13:21:04 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion28) xenial; urgency=medium
+
+  * add line continuation 
+
+ -- Doug Burks <doug.burks@gmail.com>  Wed, 09 May 2018 18:59:52 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion27) xenial; urgency=medium
+
+  * remove gdm3 before installing lightdm 
+
+ -- Doug Burks <doug.burks@gmail.com>  Wed, 09 May 2018 18:48:52 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion26) xenial; urgency=medium
+
+  * remove Flashback verbiage 
+
+ -- Doug Burks <doug.burks@gmail.com>  Wed, 09 May 2018 18:46:47 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion25) xenial; urgency=medium
+
+  * purge more unnecessary packages 
+
+ -- Doug Burks <doug.burks@gmail.com>  Wed, 09 May 2018 18:36:36 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion24) xenial; urgency=medium
+
+  * change to default Adwaita theme 
+
+ -- Doug Burks <doug.burks@gmail.com>  Wed, 09 May 2018 18:01:53 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion23) xenial; urgency=medium
+
+  * move from flashback to pure gnome 
+
+ -- Doug Burks <doug.burks@gmail.com>  Wed, 09 May 2018 17:21:04 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion22) xenial; urgency=medium
+
+  * purge ubuntu-session and install 50-gnome-flashback.conf 
+
+ -- Doug Burks <doug.burks@gmail.com>  Tue, 08 May 2018 10:26:48 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion21) xenial; urgency=medium
+
+  * install lightdm 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sat, 05 May 2018 09:37:51 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion20) xenial; urgency=medium
+
+  * depend on dmz-cursor-theme 
+
+ -- Doug Burks <doug.burks@gmail.com>  Sat, 05 May 2018 09:27:29 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion19) xenial; urgency=medium
+
+  * remove imagemagick-common 
+
+ -- Doug Burks <doug.burks@gmail.com>  Wed, 02 May 2018 16:03:11 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion18) xenial; urgency=medium
+
+  * fix quotes 
+
+ -- Doug Burks <doug.burks@gmail.com>  Tue, 01 May 2018 16:45:38 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion17) xenial; urgency=medium
+
+  * improve greeter config 
+
+ -- Doug Burks <doug.burks@gmail.com>  Tue, 01 May 2018 16:19:05 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion16) xenial; urgency=medium
+
+  * add new wallpaper 
+
+ -- Doug Burks <doug.burks@gmail.com>  Tue, 01 May 2018 15:59:05 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion15) xenial; urgency=medium
+
+  * disable guest login and don't show user accounts 
+
+ -- Doug Burks <doug.burks@gmail.com>  Tue, 01 May 2018 11:45:22 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion14) xenial; urgency=medium
+
+  * fix greeter config 
+
+ -- Doug Burks <doug.burks@gmail.com>  Tue, 01 May 2018 11:07:56 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion13) xenial; urgency=medium
+
+  * update greeter config 
+
+ -- Doug Burks <doug.burks@gmail.com>  Tue, 01 May 2018 10:40:04 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion12) xenial; urgency=medium
+
+  * replace unity-greeter with lightdm-gtk-greeter 
+
+ -- Doug Burks <doug.burks@gmail.com>  Mon, 30 Apr 2018 16:47:54 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion11) xenial; urgency=medium
+
+  * remove unity from schemas 
+
+ -- Doug Burks <doug.burks@gmail.com>  Mon, 30 Apr 2018 16:05:47 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion10) xenial; urgency=medium
+
+  * remove unnecessary packages 
+
+ -- Doug Burks <doug.burks@gmail.com>  Mon, 30 Apr 2018 14:55:48 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion9) xenial; urgency=medium
+
+  * add clearlooks-phenix-theme to dependencies 
+
+ -- Doug Burks <doug.burks@gmail.com>  Mon, 30 Apr 2018 14:24:40 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion8) xenial; urgency=medium
+
+  * update schema files and rebuild for xenial 
+
+ -- Doug Burks <doug.burks@gmail.com>  Mon, 30 Apr 2018 14:07:40 -0400
+
+securityonion-desktop-gnome (20180411-1ubuntu1securityonion7) trusty; urgency=medium
+
+  * add gedit 
+
+ -- Doug Burks <doug.burks@gmail.com>  Wed, 25 Apr 2018 13:07:25 -0400
+
 securityonion-desktop-gnome (20180411-1ubuntu1securityonion6) trusty; urgency=medium
 
   * remove extra packages 

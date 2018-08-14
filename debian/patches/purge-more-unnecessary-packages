@@ -1,0 +1,130 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ securityonion-desktop-gnome (20180411-1ubuntu1securityonion25) xenial; urgency=medium
+ .
+   * purge more unnecessary packages
+Author: Doug Burks <doug.burks@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- securityonion-desktop-gnome-20180411.orig/sbin/so-desktop-gnome
++++ securityonion-desktop-gnome-20180411/sbin/so-desktop-gnome
+@@ -33,6 +33,13 @@ if [ -f $FILE ]; then
+ 	echo
+ fi
+ 
++echo "Setting /etc/lightdm/lightdm-gtk-greeter-securityonion.conf as default greeter..."
++apt install -y lightdm lightdm-gtk-greeter
++update-alternatives --install /etc/alternatives/lightdm-gtk-greeter-config-derivative lightdm-gtk-greeter-securityonion.conf /etc/lightdm/lightdm-gtk-greeter-securityonion.conf 10
++mv /etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf.orig
++ln -s /etc/alternatives/lightdm-gtk-greeter-config-derivative /etc/lightdm/lightdm-gtk-greeter.conf
++echo
++
+ echo "Removing xfce packages..."
+ apt purge -y $(dpkg -l |awk '{print $2}' | grep xfce | grep -v xfce4-terminal | grep -v libxfce4)
+ echo
+@@ -42,14 +49,80 @@ apt purge -y $(dpkg -l |awk '{print $2}'
+ echo
+ 
+ echo "Removing other packages..."
+-apt purge -y imagemagick-common xfdesktop4-data "libgarcon*" update-notifier "compiz*" "transmission*" eog "evince*" ubuntu-settings "account-plugin*" "firefox*" "zeitgeist*" cheese "*remmina*" snapd "libreoffice*" "rhythmbox*" gnome-calendar gnome-sudoku branding-ubuntu aisleriot "*checkbox*" "shotwell*" adium-theme-ubuntu gnome-mahjongg "thunderbird*" simple-scan ubuntu-artwork gnome-mines "totem*" "ubuntu-wallpapers*" unity-webapps-common ubuntu-session "ubuntu*sounds" "cups*" light-themes unity-greeter "unity-scope-*" "unity-lens-*"
+-echo
+-
+-echo "Setting /etc/lightdm/lightdm-gtk-greeter-securityonion.conf as default greeter..."
+-apt install -y lightdm lightdm-gtk-greeter
+-update-alternatives --install /etc/alternatives/lightdm-gtk-greeter-config-derivative lightdm-gtk-greeter-securityonion.conf /etc/lightdm/lightdm-gtk-greeter-securityonion.conf 10
+-mv /etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf.orig
+-ln -s /etc/alternatives/lightdm-gtk-greeter-config-derivative /etc/lightdm/lightdm-gtk-greeter.conf
++apt purge -y \
++	"account-plugin*" \
++	"adium-theme-ubuntu" \
++	"aisleriot" \
++	"avahi*" \
++	"branding-ubuntu" \
++	"brasero*" \
++	"*checkbox*" \
++	"cheese" \
++	"chrome-gnome-shell" \
++	"compiz*" \
++	"cups*" \
++	"deja-dup*" \
++	"dleyna*"
++	"empathy*" \
++	"eog" \
++	"evince*" \
++	"evolution-common" \
++	"evolution-data-server-online-accounts" \
++	"firefox*" \
++	"gdm3" \
++	"gnome-calendar" \
++	"gnome-contacts" \
++	"gnome-documents" \
++	"gnome-getting-started-docs" \
++	"gnome-mahjongg" \
++	"gnome-maps" \
++	"gnome-mines" \
++	"gnome-music" \
++	"gnome-online*" \
++	"gnome-photos" \
++	"gnome-sudoku" \
++	"gnome-weather" \
++	"imagemagick*" \
++	"libgarcon*" \
++	"libreoffice*" \
++	"libtracker-control*" \
++	"libtracker-miner*" \
++	"light-themes" \
++	"nautilus-sendto" \
++	"nautilus-share" \
++	"openoffice.org-hyphenation" \
++	"pidgin*" \
++	"*remmina*" \
++	"rhythmbox*" \
++	"sane-utils" \
++	"shotwell*" \
++	"simple-scan" \
++	"snap*" \
++	"speech-dispatcher*" \
++	"telepathy-gabble" \
++	"telepathy-idle" \
++	"telepathy-logger" \
++	"telepathy-salut" \
++	"thunderbird*" \
++	"totem*" \
++	"tracker*" \
++	"transmission*" \
++	"ubuntu-artwork" \
++	"ubuntu-gnome-wallpapers*" \
++	"ubuntu-release-upgrader*" \
++	"ubuntu-session" \
++	"ubuntu-settings" \
++	"ubuntu*sounds" \
++	"ubuntu-wallpapers*" \
++	"unity-control-center-faces" \
++	"unity-greeter" \
++	"unity-lens-*" \
++	"unity-scope-*" \
++	"unity-webapps-common" \
++	"update-notifier" \
++	"usb-creator*" \
++	"xfdesktop4-data" \
++	"zeitgeist*"
+ echo
+ 
+ echo "Updating Applications menu with Security Onion sub-menu..."
